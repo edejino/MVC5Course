@@ -10,7 +10,9 @@ namespace MVC5Course.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+			// TODO:目前進度
+
+			return View();
         }
 
         public ActionResult About()
@@ -24,7 +26,11 @@ namespace MVC5Course.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+			return View();
         }
+		public ActionResult Test()
+		{
+			return View();
+		}
     }
 }

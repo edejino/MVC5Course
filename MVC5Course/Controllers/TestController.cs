@@ -23,5 +23,20 @@ namespace MVC5Course.Controllers
 		{
 			return View(data);
 		}
+		public ActionResult CreatProduct()
+		{
+			var db = new FabricsEntities();
+			var product = new Product()
+			{
+				ProductName = "MBP",
+				Active = true,
+				Price = 2000,
+				Stock = 5
+			};
+
+			db.Product.Add(product);
+			db.SaveChanges();
+			return View(product);
+		}
     }
 }

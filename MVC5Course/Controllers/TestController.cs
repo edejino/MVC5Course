@@ -30,7 +30,7 @@ namespace MVC5Course.Controllers
 			var product = new Product()
 			{
 				ProductName = "MBP",
-				Active = true,
+				Active = false,
 				Price = 2000,
 				Stock = 5
 			};
@@ -48,7 +48,7 @@ namespace MVC5Course.Controllers
 			//var data = db.Product.AsQueryable();
 			var data = db.Product.OrderByDescending(p => p.Price).AsQueryable();
 			data = data
-				.Where(p => p.ProductId > 1550);
+				.Where(p => p.ProductId > 1200);
 			//.OrderByDescending(p => p.Price);
 
 			if (Active.HasValue)
@@ -76,6 +76,23 @@ namespace MVC5Course.Controllers
 				return HttpNotFound();
 			}
 			one.Price = one.Price * 2;
+
+			db.SaveChanges();
+
+			return RedirectToAction("ReadProduct");
+		}
+		public ActionResult DeleteProduct(int id)
+		{
+			var one = db.Product.Find(id);
+
+			//foreach (var item in one.OrderLine.ToList())
+			//{
+			//	db.OrderLine.Remove(item);
+			//}
+
+			db.OrderLine.RemoveRange(one.OrderLine);
+
+			db.Product.Remove(one);
 
 			db.SaveChanges();
 

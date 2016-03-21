@@ -9,8 +9,9 @@ namespace MVC5Course.Controllers
 {
     public class TestController : Controller
     {
-        // GET: Test
-        public ActionResult Index()
+		FabricsEntities db = new FabricsEntities();
+		// GET: Test
+		public ActionResult Index()
         {
             return View();
         }
@@ -25,7 +26,7 @@ namespace MVC5Course.Controllers
 		}
 		public ActionResult CreatProduct()
 		{
-			var db = new FabricsEntities();
+			
 			var product = new Product()
 			{
 				ProductName = "MBP",
@@ -38,5 +39,23 @@ namespace MVC5Course.Controllers
 			db.SaveChanges();
 			return View(product);
 		}
+
+		public ActionResult ReadProduct()
+		{
+			var data = db.Product
+				.Where(p => p.ProductId > 1550)
+				.OrderByDescending(p => p.Price);
+
+			return View(data);
+		}
+		public ActionResult OneProduct(int id)
+		{
+			//var data = db.Product.Find(id);
+			//var data = db.Product.FirstOrDefault(p=>p.ProductId==id);
+			var data = db.Product.Where(p=>p.ProductId==id).FirstOrDefault();
+			
+			return View(data);
+		}
+
     }
 }

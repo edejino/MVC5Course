@@ -1,6 +1,7 @@
 ﻿using MVC5Course.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -77,7 +78,22 @@ namespace MVC5Course.Controllers
 			}
 			one.Price = one.Price * 2;
 
-			db.SaveChanges();
+			try
+			{
+				db.SaveChanges();
+			}
+			catch (DbEntityValidationException ex)
+			{
+				foreach (var entiyError in ex.EntityValidationErrors)
+				{
+					foreach (var err in entiyError.ValidationErrors)
+					{
+						return Content(err.PropertyName + ":" + err.ErrorMessage);
+					}
+				}
+			}
+
+			
 
 			return RedirectToAction("ReadProduct");
 		}

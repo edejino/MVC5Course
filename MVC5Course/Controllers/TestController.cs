@@ -113,7 +113,8 @@ namespace MVC5Course.Controllers
 
 		public ActionResult ProductSP()
 		{
-			return View();
+			var data = db.GetProduct(true, "%Yellow%");
+			return View(data);
 		}
     }
 }

@@ -35,6 +35,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
+			[@Html.ActionLink("X2", "UpdateProduct", new { id = item.ProductId })]
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Active)

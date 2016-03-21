@@ -40,11 +40,21 @@ namespace MVC5Course.Controllers
 			return View(product);
 		}
 
-		public ActionResult ReadProduct()
+		public ActionResult ReadProduct(bool? Active)
 		{
-			var data = db.Product
-				.Where(p => p.ProductId > 1550)
-				.OrderByDescending(p => p.Price);
+			//var data = db.Product
+			//	.Where(p => p.ProductId > 1550)
+			//	.OrderByDescending(p => p.Price);
+			//var data = db.Product.AsQueryable();
+			var data = db.Product.OrderByDescending(p => p.Price).AsQueryable();
+			data = data
+				.Where(p => p.ProductId > 1550);
+			//.OrderByDescending(p => p.Price);
+
+			if (Active.HasValue)
+			{
+				data = data.Where(p => p.Active == Active);
+			}
 
 			return View(data);
 		}

@@ -98,5 +98,22 @@ namespace MVC5Course.Controllers
 
 			return RedirectToAction("ReadProduct");
 		}
+
+		public ActionResult ProductView()
+		{
+			var data = db.Database.SqlQuery<ProductViewModel>(
+				@"SELECT * FROM dbo.Product WHERE Active =@p0 AND 
+				ProductName like @p1", true, "%Yellow%");
+			//var data = db.Database.ExecuteSqlCommand(
+			//	@"SELECT * FROM dbo.Product WHERE Active =@p0 AND 
+			//	ProductName like @p1", true, "%Yellow%");
+
+			return View(data);
+		}
+
+		public ActionResult ProductSP()
+		{
+			return View();
+		}
     }
 }

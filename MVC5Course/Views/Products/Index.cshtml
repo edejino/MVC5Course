@@ -5,6 +5,12 @@
 }
 
 <h2>產品</h2>
+@if (TempData["ProductsEditMsg"] != null)
+{
+	<script>
+		alert('@TempData["ProductsEditMsg"]');
+	</script>
+}
 
 <p>
     @Html.ActionLink("建立新資料", "Create")

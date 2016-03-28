@@ -26,18 +26,23 @@ namespace MVC5Course.Controllers
 		[HttpPost]
 		public ActionResult Index(IList<BatchUpdateProduct> data)
 		{
-			foreach (var item in data)
+			if (ModelState.IsValid)
 			{
-				var proudct = repoProduct.Find(item.ProductId);
+				foreach (var item in data)
+				{
+					var proudct = repoProduct.Find(item.ProductId);
 
-				proudct.Price = item.Price;
-				proudct.Active = item.Active;
-				proudct.Stock = item.Stock;
+					proudct.Price = item.Price;
+					proudct.Active = item.Active;
+					proudct.Stock = item.Stock;
+				}
+
+				repoProduct.UnitOfWork.Commit();
+				return RedirectToAction("Index");
 			}
 
-			repoProduct.UnitOfWork.Commit();
-			return RedirectToAction("Index");
-
+			ViewData.Model = repoProduct.All().Take(5);
+			return View();
 		}
 
         // GET: Products/Details/5

@@ -13,9 +13,20 @@ namespace MVC5Course.Controllers
         {
             return View();
         }
-		public ActionResult PartiaViewTset()
+		public ActionResult PartiaViewTest()
 		{
 			return PartialView("Index");
+		}
+		public ActionResult FileTest(int? dl)
+		{
+			if(dl==1)
+			{
+				return File(Server.MapPath("/Images/內有惡犬.jpg"), "image/jpeg", "內有惡犬.jpg");
+			}
+			else
+			{
+				return File(Server.MapPath("/Images/內有惡犬.jpg"), "image/jpeg");
+			}
 		}
     }
 }

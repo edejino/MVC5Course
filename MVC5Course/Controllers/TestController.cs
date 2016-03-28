@@ -93,7 +93,7 @@ namespace MVC5Course.Controllers
 					}
 				}
 			}
-			catch (DbUpdateException ex)
+			//catch (DbUpdateException ex)
 			{
 				//ex.InnerException.InnerException.InnerException
 			}

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class ARController : Controller
+    public class ARController : BaseController
     {
         // GET: AR
         public ActionResult Index()
@@ -27,6 +27,12 @@ namespace MVC5Course.Controllers
 			{
 				return File(Server.MapPath("/Images/內有惡犬.jpg"), "image/jpeg");
 			}
+		}
+		public ActionResult JsonTest(int id)
+		{
+			repoProduct.UnitOfWork.Context.Configuration.LazyLoadingEnabled = false;
+			var proudct = repoProduct.Find(id);
+			return Json(proudct,JsonRequestBehavior.AllowGet);
 		}
     }
 }

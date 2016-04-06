@@ -390,6 +390,7 @@
     <Content Include="Views\Test\ProductView.cshtml" />
     <Content Include="Views\Test\ProductSP.cshtml" />
     <Content Include="Views\AR\Index.cshtml" />
+    <Content Include="Views\Shared\Error2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

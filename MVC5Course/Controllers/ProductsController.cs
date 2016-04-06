@@ -10,7 +10,8 @@ using MVC5Course.Models;
 
 namespace MVC5Course.Controllers
 {
-    public class ProductsController : BaseController
+	[計算Action的執行時間]
+	public class ProductsController : BaseController
     {
 		//private FabricsEntities db = new FabricsEntities();
 		ProductRepository repo = RepositoryHelper.GetProductRepository();

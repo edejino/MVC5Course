@@ -107,14 +107,18 @@ namespace MVC5Course.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
+        public ActionResult Edit(int id,FormCollection form)
         {
-            if (ModelState.IsValid)
+			var product = repoProduct.Find(id);
+
+			//Products/Edit 改用 TryUpdateModel 的方式做延遲驗證與模型繫結
+			if (TryUpdateModel(product,
+				new string[] { "ProductId", "ProductName", "Price", "Active", "Stock" }))
             {
 				//db.Entry(product).State = EntityState.Modified;
 				//db.SaveChanges();
-				var dbProduct = (FabricsEntities)repoProduct.UnitOfWork.Context;
-				dbProduct.Entry(product).State = EntityState.Modified;
+				//var dbProduct = (FabricsEntities)repoProduct.UnitOfWork.Context;
+				//dbProduct.Entry(product).State = EntityState.Modified;
 				repoProduct.UnitOfWork.Commit();
 
 				TempData["ProductsEditMsg"] = product.ProductName + "更新成功";

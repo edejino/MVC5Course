@@ -188,6 +188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\VTController.cs" />
     <Compile Include="Controllers\計算Action的執行時間Attribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -391,6 +392,7 @@
     <Content Include="Views\Test\ProductSP.cshtml" />
     <Content Include="Views\AR\Index.cshtml" />
     <Content Include="Views\Shared\Error2.cshtml" />
+    <Content Include="Views\VT\RazorTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

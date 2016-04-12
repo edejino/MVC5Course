@@ -1,10 +1,10 @@
 namespace MVC5Course.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    
-    [MetadataType(typeof(ClientMetaData))]
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
+
+	[MetadataType(typeof(ClientMetaData))]
     public partial class Client
     {
     }
@@ -25,7 +25,8 @@ namespace MVC5Course.Models
         
         [StringLength(1, ErrorMessage="欄位長度不得大於 1 個字元")]
         public string Gender { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
+		[UIHint("DateOfBirth")]
+		public Nullable<System.DateTime> DateOfBirth { get; set; }
 		[UIHint("CreditRating")]
 		public Nullable<double> CreditRating { get; set; }
         

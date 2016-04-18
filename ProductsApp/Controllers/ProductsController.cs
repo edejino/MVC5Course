@@ -5,12 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace ProductsApp.Controllers
 {
     public class ProductsController : ApiController
     {
-		Product[] products = new Product[]
+		static List<Product> products = new List<Product>
 		{
 			new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
 			new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
@@ -30,6 +31,12 @@ namespace ProductsApp.Controllers
 				return NotFound();
 			}
 			return Ok(product);
+		}
+
+		public IHttpActionResult PostProduct(Product product)
+		{
+			products.Add(product);
+			return Created(Url.Route("DefaultApi", new { id = product.Id }), product);
 		}
 	}
 }

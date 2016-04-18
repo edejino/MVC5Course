@@ -14,15 +14,25 @@ namespace MVC5Course.Controllers
 {
     public class ProductsApiController : ApiController
     {
+		/// <summary>
+		/// 這是我的Product Api 控制器
+		/// </summary>
         private FabricsEntities db = new FabricsEntities();
 
-        // GET: api/ProductsApi
+        /// <summary>
+		/// 預設取得多筆資料的方法
+		/// </summary>
+		/// <returns></returns>
         public IQueryable<Product> GetProduct()
         {
             return db.Product;
         }
 
-        // GET: api/ProductsApi/5
+        /// <summary>
+		/// 取得單筆資料
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {

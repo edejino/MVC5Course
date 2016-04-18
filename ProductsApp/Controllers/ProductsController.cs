@@ -38,5 +38,16 @@ namespace ProductsApp.Controllers
 			products.Add(product);
 			return Created(Url.Route("DefaultApi", new { id = product.Id }), product);
 		}
+
+		public IHttpActionResult DeleteProduct(int id)
+		{
+			var product = products.FirstOrDefault(p => p.Id == id);
+			if (product == null) 
+			{
+				return NotFound();
+			}
+			products.Remove(product);
+			return Ok(product);
+		}
 	}
 }

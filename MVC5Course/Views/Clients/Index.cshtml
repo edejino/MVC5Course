@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("Index","Clients",FormMethod.Get, new { name = "form1" }))
 {
+	@Html.Hidden("Page")
 <p>
 	@Html.DropDownList("Gender", null, "--請選擇--", new { onchange = "this.form.submit();" })
 	@Html.DropDownList("CreditRating", null, "--請選擇--", new { onchange = "this.form.submit();" })
@@ -66,4 +67,23 @@
 }
 
 </table>
+}
+
+@using PagedList
+@using PagedList.Mvc
+
+@Html.PagedListPager(Model as IPagedList, p => Url.Action("Index", new { page = p }))
+
+<div id="details"></div>
+
+@section scripts {
+	<script>
+        $(function () {
+            $('.pagination a').on('click', function () {
+                document.form1.page.value = $(this).text();
+                document.form1.submit();
+                return false;
+            });
+        });
+	</script>
 }

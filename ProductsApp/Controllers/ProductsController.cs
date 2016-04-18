@@ -33,10 +33,15 @@ namespace ProductsApp.Controllers
 			return Ok(product);
 		}
 
+		[ValidModel]
 		public IHttpActionResult PostProduct(Product product)
 		{
-			products.Add(product);
-			return Created(Url.Route("DefaultApi", new { id = product.Id }), product);
+			if (ModelState.IsValid)
+			{
+				products.Add(product);
+				return Created(Url.Route("DefaultApi", new { id = product.Id }), product);
+			}
+			return BadRequest(ModelState);
 		}
 
 		public IHttpActionResult DeleteProduct(int id)

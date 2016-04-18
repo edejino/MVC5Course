@@ -199,6 +199,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EditProfileViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsApiController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\VTController.cs" />

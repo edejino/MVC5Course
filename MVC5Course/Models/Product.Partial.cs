@@ -1,8 +1,9 @@
 namespace MVC5Course.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+	using Newtonsoft.Json;
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
 
 	[MetadataType(typeof(ProductMetaData))]
 	public partial class Product : IValidatableObject
@@ -38,7 +39,8 @@ namespace MVC5Course.Models
 		public Nullable<bool> Active { get; set; }
 		[Required]
 		public Nullable<decimal> Stock { get; set; }
-    
-        public virtual ICollection<OrderLine> OrderLine { get; set; }
+
+		[JsonIgnore]
+		public virtual ICollection<OrderLine> OrderLine { get; set; }
     }
 }
